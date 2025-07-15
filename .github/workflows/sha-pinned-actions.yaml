@@ -9,9 +9,7 @@ name: '📌 Audit GitHub Actions'
 on:
   workflow_dispatch:
   pull_request:
-    branches:
-      - main
-      - master
+    branches: ['main']
     paths: ['.github/**']
 
 permissions: {}

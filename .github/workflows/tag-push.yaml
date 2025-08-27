@@ -9,7 +9,6 @@ name: 'Release on Tag Push 🚀'
 on:
   push:
     tags:
-      # Triggered only by semantic tags push
       - '**'
 
 permissions: {}
@@ -18,7 +17,7 @@ jobs:
   promote-release:
     name: 'Promote Draft Release'
     # yamllint disable-line rule:line-length
-    if: startsWith(github.ref, 'refs/tags/')
+    if: github.ref_type == 'tag'
     runs-on: 'ubuntu-latest'
     permissions:
       contents: write

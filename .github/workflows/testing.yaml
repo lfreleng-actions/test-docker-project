@@ -76,7 +76,7 @@ jobs:
       - name: 'Test Docker image content'
         id: content_test
         # yamllint disable rule:line-length
-        uses: lfreleng-actions/http-api-tool-docker@b7b2a1ae3171a4b450d39637b771b46551d58884  # v0.1.1
+        uses: lfreleng-actions/http-api-tool-docker@54f78d3d822d7a10d3f62aa0902963a3e4a490fb  # v1.0.1
         with:
           url: 'http://localhost:8080'
           http_method: 'GET'
@@ -93,7 +93,7 @@ jobs:
       - name: 'Test Docker image health endpoint'
         id: health_test
         # yamllint disable rule:line-length
-        uses: lfreleng-actions/http-api-tool-docker@b7b2a1ae3171a4b450d39637b771b46551d58884  # v0.1.1
+        uses: lfreleng-actions/http-api-tool-docker@54f78d3d822d7a10d3f62aa0902963a3e4a490fb  # v1.0.1
         with:
           url: 'http://localhost:8080/health'
           http_method: 'GET'

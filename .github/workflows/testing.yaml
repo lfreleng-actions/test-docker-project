@@ -36,6 +36,8 @@ jobs:
       - name: 'Checkout repository'
         # yamllint disable-line rule:line-length
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
+        with:
+          persist-credentials: false
 
       # Set up QEMU for multi-platform builds
       - name: 'Set up QEMU'
@@ -128,18 +130,27 @@ jobs:
       # Create job summary
       - name: 'Job summary'
         if: always()
+        env:
+          CONTENT_OUTCOME: "${{ steps.content_test.outcome }}"
+          HEALTH_OUTCOME: "${{ steps.health_test.outcome }}"
         run: |
           {
             echo "# 🐳 Docker Image Test Results"
             echo ""
             echo "| Test | Status |"
             echo "| ---- | ------ |"
-            echo "| Content | ${{ steps.content_test.outcome == 'success' &&
-              '✅ Pass' || '❌ Fail' }} |"
-            echo "| Health | ${{ steps.health_test.outcome == 'success' &&
-              '✅ Pass' || '❌ Fail' }} |"
-            if [[ "${{ steps.content_test.outcome }}" == "success" && \
-                  "${{ steps.health_test.outcome }}" == "success" ]]; then
+            if [[ "$CONTENT_OUTCOME" == "success" ]]; then
+              echo "| Content | ✅ Pass |"
+            else
+              echo "| Content | ❌ Fail |"
+            fi
+            if [[ "$HEALTH_OUTCOME" == "success" ]]; then
+              echo "| Health | ✅ Pass |"
+            else
+              echo "| Health | ❌ Fail |"
+            fi
+            if [[ "$CONTENT_OUTCOME" == "success" && \
+                  "$HEALTH_OUTCOME" == "success" ]]; then
               echo "## ✅ All tests passed"
             else
               echo "## ❌ Some tests failed"

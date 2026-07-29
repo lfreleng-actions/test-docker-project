@@ -116,9 +116,12 @@ jobs:
       # Log brief test results
       - name: 'Test results summary'
         if: always()
+        env:
+          CONTENT_TEST_OUTCOME: ${{ steps.content_test.outcome }}
+          HEALTH_TEST_OUTCOME: ${{ steps.health_test.outcome }}
         run: |
-          echo "Content Test: ${{ steps.content_test.outcome }}"
-          echo "Health Test: ${{ steps.health_test.outcome }}"
+          echo "Content Test: ${CONTENT_TEST_OUTCOME}"
+          echo "Health Test: ${HEALTH_TEST_OUTCOME}"
 
       # Stop container
       - name: 'Stop and remove container'

@@ -42,7 +42,7 @@ jobs:
       # Set up QEMU for multi-platform builds
       - name: 'Set up QEMU'
         # yamllint disable-line rule:line-length
-        uses: docker/setup-qemu-action@1f40c72289eff860ee54a304f1438e3cff362e0a  # v4.3.0
+        uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1  # v4.4.0
 
       # Set up Docker Buildx
       - name: 'Set up Docker Buildx'

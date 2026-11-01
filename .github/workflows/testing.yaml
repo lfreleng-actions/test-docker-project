@@ -47,7 +47,7 @@ jobs:
       # Set up Docker Buildx
       - name: 'Set up Docker Buildx'
         # yamllint disable-line rule:line-length
-        uses: docker/setup-buildx-action@594f3bf4285d9ea8dc53c9a0c9c4092420091003  # v4.4.0
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069  # v4.4.1
         with:
           install: true
 
@@ -83,7 +83,7 @@ jobs:
       - name: 'Test Docker image content'
         id: content_test
         # yamllint disable rule:line-length
-        uses: lfreleng-actions/http-api-tool-docker@1a44737b6c3b1d3341d5491641bb03727a072a63  # v1.1.2
+        uses: lfreleng-actions/http-api-tool-docker@f4ee5b9d44acced243a34b596eca50fc89b7e255  # v1.1.4
         with:
           url: 'http://localhost:8080'
           http_method: 'GET'
@@ -100,7 +100,7 @@ jobs:
       - name: 'Test Docker image health endpoint'
         id: health_test
         # yamllint disable rule:line-length
-        uses: lfreleng-actions/http-api-tool-docker@1a44737b6c3b1d3341d5491641bb03727a072a63  # v1.1.2
+        uses: lfreleng-actions/http-api-tool-docker@f4ee5b9d44acced243a34b596eca50fc89b7e255  # v1.1.4
         with:
           url: 'http://localhost:8080/health'
           http_method: 'GET'
